@@ -11,13 +11,16 @@ headerblue[0].addEventListener('click', event => {
     }, 500);
 })
 
-const navlinks = document.getElementsByClassName('nav-link')
+const navlinks = document.querySelectorAll('.nav-link')
 
-navlinks[0].addEventListener('mouseover', event => navlinks[0].style.color = 'pink')
-navlinks[1].addEventListener('mouseover', event => navlinks[1].style.color = 'pink')
-navlinks[2].addEventListener('mouseover', event => navlinks[2].style.color = 'pink')
-navlinks[3].addEventListener('mouseover', event => navlinks[3].style.color = 'pink')
+//protected function before colorchange otherwise colorchange executes immediately
+//I think how callback being passed
+navlinks.forEach(Element => Element.addEventListener('mouseover', () => colorchange(Element)))
 
+function colorchange(link){
+    console.log('link hover over')
+    link.style.color = 'pink'
+}
 
 //Selecting stuff and hitting copy will print out a message intro tag will deliver alert
 const copy = document.querySelector('.intro')
@@ -38,8 +41,8 @@ window.addEventListener('load', (event) => {
     alert('page is fully loaded');
 });
 
-//
 
+//Window size adjustment alert
 window.addEventListener('resize', event => {
     if(window.innerHeight <= 500 || window.innerWidth <= 800){
     alert(`The window size is at ${window.innerHeight} by ${window.innerWidth}`)
@@ -47,3 +50,5 @@ window.addEventListener('resize', event => {
 })
 
 
+
+//double clicking
